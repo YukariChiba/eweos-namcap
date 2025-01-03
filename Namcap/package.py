@@ -117,7 +117,7 @@ class PacmanPackage(collections.abc.MutableMapping[str, Any]):
                 elif line.strip() != "" and attrname:
                     self.setdefault(attrname, []).append(line)
         elif db is not None:
-            raise TypeError("argument 'pkginfo' must be a string")
+            raise TypeError("argument 'db' must be a string")
 
         # Cleanup
         self.process()
