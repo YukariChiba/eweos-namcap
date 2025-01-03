@@ -14,7 +14,7 @@ import Namcap.ruleclass
 class PkgbuildTest(unittest.TestCase):
     """
     This class is the template for unit tests concerning PKGBUILD rules.
-    The setUp()	method should set self.rule to a class derived from
+    The setUp() method should set self.rule to a class derived from
     PkgbuildRule.
 
     The usual way to do that is by defining
