@@ -88,6 +88,7 @@ py-mtime-mtree-warning :: Found .py file unnoticeably newer than associated .pyc
 py-mtime-tar-error :: Found .py file newer than associated .pyc/pyo.
 python-module-dependence %s in %s :: Python dependence (%s) on module %s
 python-module-no-package-associated %s %s :: Referenced python module '%s' is an uninstalled dependency (needed in files %s)
+python-tests-directory :: Found 'tests' directory directly under site-packages
 qml-module-dependence %s in %s :: QML dependency (%s) on module %s
 qml-module-no-package-associated %s %s :: Referenced QML module '%s' is an uninstalled dependency (needed in files %s)
 redundant-makedep %s :: Make dependency (%s) already included as dependency

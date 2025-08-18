@@ -41,6 +41,7 @@ from . import (  # noqa: F401
     pkgnameindesc,
     py_mtime,
     pydepends,
+    pytestsdir,
     qmldepends,
     rpath,
     runpath,
