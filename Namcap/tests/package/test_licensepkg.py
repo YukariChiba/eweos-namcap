@@ -240,7 +240,7 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
         url="http://www.example.com/"
         license=('GPL-3.0-or-later')
         depends=('glibc')
@@ -269,7 +269,7 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
             url="http://www.example.com/"
             license=('DWTFYWL')
             depends=('glibc')
@@ -303,7 +303,7 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
             url="http://www.example.com/"
             license=('LicenseRef-DWTFYWL')
             depends=('glibc')
@@ -335,7 +335,7 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
             url="http://www.example.com/"
             license=('LicenseRef-DWTFYWL')
             depends=('glibc')
@@ -372,7 +372,7 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
             url="http://www.example.com/"
             license=('GPL-3.0-or-later with Bootloader-exception')
             depends=('glibc')
@@ -410,7 +410,7 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
             url="http://www.example.com/"
             license=('() broken')
             depends=('glibc')
@@ -447,7 +447,7 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
         url="http://www.example.com/"
         license=('MIT')
         depends=('glibc')
@@ -484,7 +484,7 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
         url="http://www.example.com/"
         license=('MIT')
         depends=('glibc')
@@ -518,7 +518,7 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
         url="http://www.example.com/"
         license=('MIT')
         depends=('licenses')

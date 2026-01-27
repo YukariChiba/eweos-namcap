@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 import os
+import platform
+from pytest import mark
 
 import Namcap.rules.elffiles
 from Namcap.tests.makepkg import MakepkgTest
@@ -13,7 +15,7 @@ pkgname=__namcap_test_elffiles
 pkgver=1.0
 pkgrel=1
 pkgdesc="A package"
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
 depends=('glibc')
@@ -44,7 +46,7 @@ pkgname=__namcap_test_execstack
 pkgver=1.0
 pkgrel=1
 pkgdesc="A package"
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
 depends=('glibc')
@@ -77,7 +79,7 @@ pkgname=__namcap_test_nopie
 pkgver=1.0
 pkgrel=1
 pkgdesc="A package"
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'aarch64' 'loong64' 'riscv64')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
 depends=('glibc')
@@ -104,6 +106,7 @@ package() {
         self.assertEqual(r.infos, [])
 
 
+@mark.skipif("x86_64" not in platform.machine(), reason="-fcf-protection currently only works for x86 processors")
 class TestNoShadowStack(MakepkgTest):
     pkgbuild = """
 pkgname=__namcap_test_noshstk
