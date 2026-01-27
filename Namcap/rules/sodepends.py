@@ -18,9 +18,9 @@ from Namcap.rules.rpath import get_rpaths
 from Namcap.rules.runpath import get_runpaths
 from Namcap.util import is_elf
 
-Architecture: TypeAlias = Literal["i686", "x86-64"]
+Architecture: TypeAlias = Literal["i686", "x86-64", "aarch64", "loong64", "riscv64"]
 
-libcache: dict[Architecture, dict[str, str]] = {"i686": {}, "x86-64": {}}
+libcache: dict[Architecture, dict[str, str]] = {"i686": {}, "x86-64": {}, "aarch64": {}, "loong64": {}, "riscv64": {}}
 
 _DependsMap: TypeAlias = dict[str, str]
 _LibMap: TypeAlias = dict[str, set[str]]
@@ -38,16 +38,22 @@ def scanlibs(fileobj, filename, custom_libs, liblist, libdepends, libprovides):
         return {}
 
     elffile = ELFFile(fileobj)
+    bitsize = elffile.elfclass
+    match elffile.header.e_machine:
+        case "EM_386":
+            architecture: Architecture = "i686"
+        case "EM_X86_64":
+            architecture = "x86-64"
+        case "EM_AARCH64":
+            architecture = "aarch64"
+        case "EM_LOONGARCH":
+            architecture = "loong64"
+        case "EM_RISCV":
+            architecture = "riscv64"
     for section in elffile.iter_sections():
         if not isinstance(section, DynamicSection):
             continue
         for tag in section.iter_tags():
-            bitsize = elffile.elfclass
-            match bitsize:
-                case 32:
-                    architecture: Architecture = "i686"
-                case 64:
-                    architecture = "x86-64"
             # DT_SONAME means it provides a library
             if tag.entry.d_tag == "DT_SONAME" and os.path.dirname(filename) in ["usr/lib", "usr/lib32"]:
                 soname = re.sub(r"\.so.*", ".so", tag.soname)
@@ -131,8 +137,14 @@ def filllibcache() -> None:
         if g is not None:
             if g.group(2).startswith("libc6,x86-64"):
                 libcache["x86-64"][g.group(1)] = g.group(3)
+            elif g.group(2).startswith("libc6,AArch64"):
+                libcache["aarch64"][g.group(1)] = g.group(3)
+            elif g.group(2).startswith("libc6,double-float"):
+                # TODO: both riscv64 and loong64 are showing double-float
+                libcache["loong64"][g.group(1)] = g.group(3)
+                libcache["riscv64"][g.group(1)] = g.group(3)
             else:
-                # TODO: This is bogus; what do non x86-architectures print?
+                # TODO: This is bogus; what do other non x86-architectures print?
                 libcache["i686"][g.group(1)] = g.group(3)
 
 
