@@ -29,7 +29,7 @@ package() {
 }
 """
 
-    def test_pydepends(self):
+    def test_pydepends(self) -> None:
         "Package with missing pacman dependency"
         pkgfile = "__namcap_test_pydepends-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:

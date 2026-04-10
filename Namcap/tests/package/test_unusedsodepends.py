@@ -29,7 +29,7 @@ package() {
 }
 """
 
-    def test_unusedsodepends_files(self):
+    def test_unusedsodepends_files(self) -> None:
         "Package with binaries linking to unused shared libraries"
         pkgfile = "__namcap_test_unusedsodepends-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:

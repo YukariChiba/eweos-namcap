@@ -42,7 +42,7 @@ package() {
 }
 """
 
-    def test_sodepends(self):
+    def test_sodepends(self) -> None:
         "Package with missing pacman dependency"
         pkgfile = "__namcap_test_sodepends-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         alpm_filename = os.path.join("usr/lib", get_soname("/usr/lib/libalpm.so"))

@@ -28,7 +28,7 @@ package() {
 }
 """
 
-    def test_nonascii(self):
+    def test_nonascii(self) -> None:
         pkgfile = "__namcap_test_nonascii-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w", encoding="utf-8") as f:
             f.write(self.pkgbuild)

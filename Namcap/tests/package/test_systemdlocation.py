@@ -27,7 +27,7 @@ package() {
 }
 """
 
-    def test_systemdlocation_pkgname(self):
+    def test_systemdlocation_pkgname(self) -> None:
         pkgfile = "systemd-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild + "pkgname=systemd")
@@ -39,7 +39,7 @@ package() {
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_systemdlocation_provides(self):
+    def test_systemdlocation_provides(self) -> None:
         pkgfile = "__namcap_test_systemdlocation-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild + "provides=(systemd)")
@@ -51,7 +51,7 @@ package() {
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_systemdlocation(self):
+    def test_systemdlocation(self) -> None:
         pkgfile = "__namcap_test_systemdlocation-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)

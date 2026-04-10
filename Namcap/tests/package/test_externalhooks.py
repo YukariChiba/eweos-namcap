@@ -40,7 +40,7 @@ post_install() {
 }
 """
 
-    def test_bad_install(self):
+    def test_bad_install(self) -> None:
         pkgfile = "__namcap_test_externalhooks-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_generic)
@@ -57,7 +57,7 @@ post_install() {
         )
         self.assertEqual(r.infos, [])
 
-    def test_good_install(self):
+    def test_good_install(self) -> None:
         pkgfile = "__namcap_test_externalhooks-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_generic)

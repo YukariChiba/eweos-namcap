@@ -29,7 +29,7 @@ package() {
 }
 """
 
-    def test_pytestsdir(self):
+    def test_pytestsdir(self) -> None:
         """Package with tests directory in Python site-packages."""
         pkgfile = "__namcap_test_pytestsdir-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:

@@ -67,7 +67,7 @@ package() {
 }
 """
 
-    def test_not_any_no_elf(self):
+    def test_not_any_no_elf(self) -> None:
         pkgfile = "__namcap_test_anyelf-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_any)
@@ -77,7 +77,7 @@ package() {
         self.assertEqual(r.warnings, [("no-elffiles-not-any-package", ())])
         self.assertEqual(r.infos, [])
 
-    def test_any_but_elf(self):
+    def test_any_but_elf(self) -> None:
         pkgfile = "__namcap_test_anyelf-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_elf)
@@ -87,7 +87,7 @@ package() {
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_static(self):
+    def test_static(self) -> None:
         pkgfile = "__namcap_test_anyelf-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_static)

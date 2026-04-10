@@ -28,7 +28,7 @@ package() {
 }
 """
 
-    def test_gnomemime_file_exists(self):
+    def test_gnomemime_file_exists(self) -> None:
         pkgfile = "__namcap_test_gnomemime-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)

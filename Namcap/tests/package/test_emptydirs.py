@@ -27,7 +27,7 @@ package() {
 }
 """
 
-    def test_emptydir(self):
+    def test_emptydir(self) -> None:
         pkgfile = "__namcap_test_emptydirs-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)

@@ -55,7 +55,7 @@ package() {
     # Temporarily stub the local package database to ensure that condition
     # even if the host system really has the package installed.
     @patch.object(Namcap.package, "pyalpm_handle", _AlpmWithout("qt6-declarative"))
-    def test_qmldepends(self):
+    def test_qmldepends(self) -> None:
         "Package with missing pacman dependency"
         pkgfile = "__namcap_test_qmldepends-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:

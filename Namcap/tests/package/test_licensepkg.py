@@ -234,7 +234,7 @@ def test_get_symlink_target(name: str, linkname: str, result: str, expectation: 
 
 
 class LicenseFileTest(MakepkgTest):
-    def test_common_license_requires_no_file(self):
+    def test_common_license_requires_no_file(self) -> None:
         pkgbuild = """
         pkgname=__namcap_test_licensepkg
         pkgver=1.0
@@ -263,7 +263,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_unknown_license_identifier_without_licenseref(self):
+    def test_unknown_license_identifier_without_licenseref(self) -> None:
         pkgbuild = """
             pkgname=__namcap_test_licensepkg
             pkgver=1.0
@@ -297,7 +297,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_license_file_for_licenseref(self):
+    def test_license_file_for_licenseref(self) -> None:
         pkgbuild = """
             pkgname=__namcap_test_licensepkg
             pkgver=1.0
@@ -329,7 +329,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_missing_license_file_for_licenseref(self):
+    def test_missing_license_file_for_licenseref(self) -> None:
         pkgbuild = """
             pkgname=__namcap_test_licensepkg
             pkgver=1.0
@@ -366,7 +366,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_license_string_needs_formatting(self):
+    def test_license_string_needs_formatting(self) -> None:
         pkgbuild = """
             pkgname=__namcap_test_licensepkg
             pkgver=1.0
@@ -404,7 +404,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_invalid_license_string(self):
+    def test_invalid_license_string(self) -> None:
         pkgbuild = """
             pkgname=__namcap_test_licensepkg
             pkgver=1.0
@@ -441,7 +441,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_symlink_to_missing_file_in_other_pkg(self):
+    def test_symlink_to_missing_file_in_other_pkg(self) -> None:
         pkgbuild = """
         pkgname=__namcap_test_licensepkg
         pkgver=1.0
@@ -478,7 +478,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [("license-file-in-external-pkg %s", ("usr/share/licenses/other_pkg/LICENSE",))])
         self.assertEqual(r.infos, [])
 
-    def test_license_dir_is_symlink_and_target_pkg_not_in_depends(self):
+    def test_license_dir_is_symlink_and_target_pkg_not_in_depends(self) -> None:
         pkgbuild = """
         pkgname=__namcap_test_licensepkg
         pkgver=1.0
@@ -512,7 +512,7 @@ class LicenseFileTest(MakepkgTest):
         self.assertEqual(r.warnings, [("license-dir-in-external-pkg %s", ("usr/share/licenses/other_pkg",))])
         self.assertEqual(r.infos, [])
 
-    def test_license_dir_is_symlink_and_dependencies_do_not_provide_files(self):
+    def test_license_dir_is_symlink_and_dependencies_do_not_provide_files(self) -> None:
         pkgbuild = """
         pkgname=__namcap_test_licensepkg
         pkgver=1.0

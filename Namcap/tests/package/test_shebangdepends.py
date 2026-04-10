@@ -30,7 +30,7 @@ package() {
 }
 """
 
-    def test_shebangdepends(self):
+    def test_shebangdepends(self) -> None:
         "Package with missing python dependency"
         pkgfile = "__namcap_test_shebangdepends-1.0-1-any.pkg.tar"
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:

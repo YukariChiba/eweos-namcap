@@ -28,7 +28,7 @@ package() {
 }
 """
 
-    def test_scrollkeeper_files(self):
+    def test_scrollkeeper_files(self) -> None:
         pkgfile = "__namcap_test_scrollkeeper-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)

@@ -29,7 +29,7 @@ package() {
 }
 """
 
-    def test_fhs_elffiles(self):
+    def test_fhs_elffiles(self) -> None:
         pkgfile = "__namcap_test_elffiles-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
@@ -62,7 +62,7 @@ package() {
 }
 """
 
-    def test_execstack(self):
+    def test_execstack(self) -> None:
         pkgfile = "__namcap_test_execstack-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
@@ -95,7 +95,7 @@ package() {
 }
 """
 
-    def test_nopie(self):
+    def test_nopie(self) -> None:
         pkgfile = "__namcap_test_nopie-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
@@ -139,7 +139,7 @@ package() {
 }
 """
 
-    def test_noshstk(self):
+    def test_noshstk(self) -> None:
         pkgfile = "__namcap_test_noshstk-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)

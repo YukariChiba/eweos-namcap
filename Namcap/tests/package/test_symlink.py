@@ -34,7 +34,7 @@ package() {
 }
 """
 
-    def test_symlink_files(self):
+    def test_symllnk_files(self) -> None:
         "Package with a dangling symlink"
         pkgfile = "__namcap_test_symlink-1.0-1-%(arch)s.pkg.tar" % {"arch": self.arch}
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
