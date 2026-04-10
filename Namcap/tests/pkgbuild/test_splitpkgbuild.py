@@ -41,7 +41,7 @@ package_prog1() {
     def preSetUp(self):
         self.rule = module.PackageFunctionsRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         "Example 1 : missing package_* function"
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("missing-pkgfunction %s", ("prog2",))])
@@ -93,7 +93,7 @@ package_prog2() {
     def preSetUp(self):
         self.rule = module.SplitPkgMakedepsRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         "Example 1: missing makedepend"
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("missing-makedeps %s", (str(["lib1", "lib2"]),))])

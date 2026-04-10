@@ -39,7 +39,7 @@ package() {
     def preSetUp(self):
         self.rule = Namcap.rules.arrays.package
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         "Variables in PKGBUILD are not an array"
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])

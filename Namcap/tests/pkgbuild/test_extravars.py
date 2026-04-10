@@ -90,7 +90,7 @@ package() {
     def preSetUp(self):
         self.rule = Namcap.rules.extravars.package
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         "PKGBUILD with custom variables without underscore"
         os.putenv("environment_pollution", "yes")
         r = self.run_on_pkg(self.pkgbuild1)
@@ -105,7 +105,7 @@ package() {
         )
         self.assertEqual(r.infos, [])
 
-    def test_example2(self):
+    def test_example2(self) -> None:
         "a tricky PKGBUILD with custom variables without underscore"
         r = self.run_on_pkg(self.pkgbuild2)
         self.assertEqual(r.errors, [])

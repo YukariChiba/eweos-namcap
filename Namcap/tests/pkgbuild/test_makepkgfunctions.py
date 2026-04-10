@@ -39,7 +39,7 @@ package() {
     def preSetUp(self):
         self.rule = module.package
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         bad_calls = ["msg", "msg2", "warning", "error", "plain"]
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])

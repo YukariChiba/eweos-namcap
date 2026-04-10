@@ -40,7 +40,7 @@ package() {
     def preSetUp(self):
         self.rule = CapsPkgnameRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("package-name-in-uppercase", ())])
@@ -81,7 +81,7 @@ package() {
     def preSetUp(self):
         self.rule = LicenseRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("missing-license", ())])
@@ -123,7 +123,7 @@ package() {
     def preSetUp(self):
         self.rule = UrlRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("missing-url", ())])
@@ -177,7 +177,7 @@ package() {
     def preSetUp(self):
         self.rule = NonUniqueSourcesRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("non-unique-source-name %s", ("v1.0.tar.gz"))])

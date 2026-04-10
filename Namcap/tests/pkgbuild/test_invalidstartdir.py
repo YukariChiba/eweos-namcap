@@ -41,7 +41,7 @@ package() {
     def preSetUp(self):
         self.rule = module.package
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(

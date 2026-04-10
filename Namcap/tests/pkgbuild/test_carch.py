@@ -50,13 +50,13 @@ package() {
     def preSetUp(self):
         self.rule = module.package
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example2(self):
+    def test_example2(self) -> None:
         r = self.run_on_pkg(self.pkgbuild2)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("specific-host-type-used %s", ("i686",))])

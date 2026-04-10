@@ -36,7 +36,7 @@ package() {
     def preSetUp(self):
         self.rule = module.RedundantMakedepends
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
@@ -78,7 +78,7 @@ package() {
     def preSetUp(self):
         self.rule = module.VCSMakedepends
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         makedeps = ["breezy", "git", "mercurial", "subversion"]
         r = self.run_on_pkg(self.pkgbuild1)
@@ -86,7 +86,7 @@ package() {
         self.assertEqual(set(r.warnings), set(("missing-vcs-makedeps %s", (i,)) for i in makedeps))
         self.assertEqual(r.infos, [])
 
-    def test_example2(self):
+    def test_example2(self) -> None:
         # Example 2
         r = self.run_on_pkg(self.pkgbuild1 + "source=(gitsomething)")
         self.assertEqual(r.errors, [])

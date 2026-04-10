@@ -135,28 +135,28 @@ package() {
     def preSetUp(self):
         self.rule = ChecksumsRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("improper-checksum %s %s", ("md5sums", "look-this-is-an-invalid-checksum"))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example2(self):
+    def test_example2(self) -> None:
         # Example 2
         r = self.run_on_pkg(self.pkgbuild2)
         self.assertEqual(r.errors, [("not-enough-checksums %s %i needed", ("md5sums", 2))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example_no_sources(self):
+    def test_example_no_sources(self) -> None:
         # Example with no sources (FS #23259)
         r = self.run_on_pkg(self.pkgbuild_no_sources)
         self.assertEqual(r.errors, [("too-many-checksums %s %i needed", ("md5sums", 0))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example_valid(self):
+    def test_example_valid(self) -> None:
         for p in [self.pkgbuild_sha512, self.pkgbuild_skip]:
             r = self.run_on_pkg(p)
             self.assertEqual(r.errors, [])
@@ -196,7 +196,7 @@ package() {
     def preSetUp(self):
         self.rule = TagsRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
@@ -301,20 +301,20 @@ package() {
     def preSetUp(self):
         self.rule = DescriptionRule
 
-    def test_example1(self):
+    def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [("missing-description %s", ("foo",)), ("missing-description %s", ("bar",))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example2(self):
+    def test_example2(self) -> None:
         r = self.run_on_pkg(self.pkgbuild2)
         self.assertEqual(r.errors, [("missing-description", ())])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
 
-    def test_example3(self):
+    def test_example3(self) -> None:
         r = self.run_on_pkg(self.pkgbuild3)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [])
