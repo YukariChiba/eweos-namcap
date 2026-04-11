@@ -3,6 +3,7 @@ line-length = 120
 
 [tool.ruff.lint]
 select = [
+    "A",       # flake8-builtins
     "E",       # pycodestyle
     "F",       # pyflakes
     "ISC",     # flake8-implicit-str-concat
