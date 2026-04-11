@@ -304,7 +304,7 @@ def load_mtree(tar: TarFile) -> Generator[tuple[str, dict[str, str]]]:
         raise StopIteration
     zfile = tar.extractfile(".MTREE")
     if zfile is None:
-        raise IOError(".MTREE missing from tar archive")
+        raise OSError(".MTREE missing from tar archive")
     text = gzip.open(zfile).read().decode("utf-8")
     defaults = {}
     for line in text.split("\n"):
