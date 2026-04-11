@@ -37,7 +37,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = CapsPkgnameRule
 
     def test_example1(self) -> None:
@@ -78,7 +78,7 @@ package() {
 """
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = LicenseRule
 
     def test_example1(self) -> None:
@@ -120,7 +120,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = UrlRule
 
     def test_example1(self) -> None:
@@ -174,7 +174,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = NonUniqueSourcesRule
 
     def test_example1(self) -> None:

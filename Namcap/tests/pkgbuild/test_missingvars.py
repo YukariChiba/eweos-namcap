@@ -132,7 +132,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = ChecksumsRule
 
     def test_example1(self) -> None:
@@ -193,7 +193,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = TagsRule
 
     def test_example1(self) -> None:
@@ -298,7 +298,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = DescriptionRule
 
     def test_example1(self) -> None:

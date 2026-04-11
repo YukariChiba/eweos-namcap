@@ -38,7 +38,7 @@ package_prog1() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = module.PackageFunctionsRule
 
     def test_example1(self) -> None:
@@ -90,7 +90,7 @@ package_prog2() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = module.SplitPkgMakedepsRule
 
     def test_example1(self) -> None:

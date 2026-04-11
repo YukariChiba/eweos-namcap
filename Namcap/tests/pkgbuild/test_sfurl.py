@@ -37,7 +37,7 @@ package() {
 
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = module.package
 
     def test_example1(self) -> None:

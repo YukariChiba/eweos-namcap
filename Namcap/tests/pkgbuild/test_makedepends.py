@@ -33,7 +33,7 @@ package() {
 """
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = module.RedundantMakedepends
 
     def test_example1(self) -> None:
@@ -75,7 +75,7 @@ package() {
 """
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = module.VCSMakedepends
 
     def test_example1(self) -> None:

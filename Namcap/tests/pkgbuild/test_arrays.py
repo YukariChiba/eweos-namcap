@@ -36,7 +36,7 @@ package() {
 """
     test_valid = PkgbuildTest.valid_tests
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         self.rule = Namcap.rules.arrays.package
 
     def test_example1(self) -> None:
