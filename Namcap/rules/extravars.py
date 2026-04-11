@@ -45,7 +45,8 @@ class package(PkgbuildRule):
             "changelog",
             "options",
             "validpgpkeys",
-        ] + carch_vars
+            *carch_vars,
+        ]
         if "arch" in pkginfo and pkginfo["arch"] != ["any"]:
             stdvars.extend(v + "_" + a for v, a in product(carch_vars, pkginfo["arch"]))
         for varname in pkginfo["setvars"]:
