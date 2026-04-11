@@ -11,16 +11,16 @@ from Namcap.ruleclass import TarballRule
 from Namcap.util import is_debug
 
 
-def get_license_canonicalized(license: str) -> str:
+def get_license_canonicalized(pkg_license: str) -> str:
     """Get the canonicalized form of a license string
 
     This function may raise an Exception if it's not possible to derive any meaning from the input string
     """
     licensing = get_spdx_licensing()
-    return str(licensing.parse(license, strict=True))
+    return str(licensing.parse(pkg_license, strict=True))
 
 
-def strip_plus_from_license(license: BaseSymbol) -> BaseSymbol:
+def strip_plus_from_license(pkg_license: BaseSymbol) -> BaseSymbol:
     """Remove a "+" suffix from the license symbol if it contains one
 
     The license_expression module does not support the SPDX "+" operator, but parses it as part of the license
@@ -30,12 +30,12 @@ def strip_plus_from_license(license: BaseSymbol) -> BaseSymbol:
     license identifier is detected, the plus operator is left intact and this will be later reported as an
     unknown license symbol.
     """
-    license_str = str(license)
+    license_str = str(pkg_license)
     if license_str[-1] != "+" or license_str.startswith("LicenseRef-"):
-        return license
+        return pkg_license
     license_id = license_str[:-1]
     if license_id.endswith(("-only", "-or-later")):
-        return license
+        return pkg_license
     else:
         return LicenseSymbol(license_id)
 
@@ -53,9 +53,9 @@ def get_license_symbols(pkg_license: str) -> set[BaseSymbol]:
     license_symbols: set[BaseSymbol] = set()
     for symbol in license_expression.symbols:
         if isinstance(symbol, LicenseWithExceptionSymbol):
-            license, exception = list(symbol.decompose())
-            license = strip_plus_from_license(license)
-            license_symbols.add(LicenseWithExceptionSymbol(license, exception))
+            license_symbol, exception = list(symbol.decompose())
+            pkg_license = strip_plus_from_license(license_symbol)
+            license_symbols.add(LicenseWithExceptionSymbol(pkg_license, exception))
         else:
             license_symbols.add(strip_plus_from_license(symbol))
     return license_symbols
@@ -121,9 +121,9 @@ def get_uncommon_license_symbols(
     for symbol in licenses:
         # if the symbol also carries an exception match license symbol and exception symbol separately
         if isinstance(symbol, LicenseWithExceptionSymbol):
-            license, exception = list(symbol.decompose())
-            if license in uncommon_licenses or str(license).startswith("LicenseRef-"):
-                uncommon_symbols.append(license)
+            pkg_license, exception = list(symbol.decompose())
+            if pkg_license in uncommon_licenses or str(pkg_license).startswith("LicenseRef-"):
+                uncommon_symbols.append(pkg_license)
             if exception in uncommon_exceptions or str(exception).startswith("LicenseRef-"):
                 uncommon_symbols.append(exception)
         else:
@@ -144,8 +144,8 @@ def get_unknown_license_symbols(
     for symbol in licenses:
         # if the symbol also carries an exception match license symbol and exception symbol separately
         if isinstance(symbol, LicenseWithExceptionSymbol):
-            license, exception = list(symbol.decompose())
-            if license not in known_licenses:
+            pkg_license, exception = list(symbol.decompose())
+            if pkg_license not in known_licenses:
                 unknown_symbols.append(symbol)
             if exception not in known_exceptions:
                 unknown_symbols.append(symbol)
@@ -244,24 +244,24 @@ class package(TarballRule):
             return
 
         # get canonicalized form of all license strings (and add errors for them)
-        for license in pkginfo["license"]:
+        for pkg_license in pkginfo["license"]:
             try:
-                canonicalized_license = get_license_canonicalized(license)
+                canonicalized_license = get_license_canonicalized(pkg_license)
             except Exception:
                 # we pass here, as we call get_license_symbols() later, which will raise as well
                 pass
             else:
-                if license != canonicalized_license:
-                    self.errors.append(("license-statement-formatting %s %s", (license, canonicalized_license)))
+                if pkg_license != canonicalized_license:
+                    self.errors.append(("license-statement-formatting %s %s", (pkg_license, canonicalized_license)))
 
         # get a combined set of all license symbols from all license strings
         # the license symbols may be of type LicenseSymbol (license) or LicenseWithExceptionSymbol (license + exception)
         license_symbols: set[BaseSymbol] = set()
-        for license in pkginfo["license"]:
+        for pkg_license in pkginfo["license"]:
             try:
-                new_license_symbols = get_license_symbols(license)
+                new_license_symbols = get_license_symbols(pkg_license)
             except Exception:
-                self.errors.append(("invalid-license-string %s", (license,)))
+                self.errors.append(("invalid-license-string %s", (pkg_license,)))
             else:
                 license_symbols.update(new_license_symbols)
 
@@ -270,9 +270,9 @@ class package(TarballRule):
 
         # check if any license (ignoring exception) symbols are unknown
         # (and add errors for them, if they are not prefixed with LicenseRef-)
-        for license in get_unknown_license_symbols(license_symbols, known_licenses, known_exceptions):
-            if not str(license).startswith("LicenseRef-"):
-                self.errors.append(("unknown-spdx-license-identifier %s", (str(license),)))
+        for pkg_license in get_unknown_license_symbols(license_symbols, known_licenses, known_exceptions):
+            if not str(pkg_license).startswith("LicenseRef-"):
+                self.errors.append(("unknown-spdx-license-identifier %s", (str(pkg_license),)))
 
         common_licenses = get_common_spdx_license_identifiers()
         common_exceptions = get_common_spdx_license_exceptions()
@@ -303,7 +303,7 @@ class package(TarballRule):
 
         # there are symlinks for license files that point to files in external packages
         if licenses_in_pkg == 0 and licenses_outside_pkg > 0 and not license_dir_symlink:
-            outbound_licenses = [license for (license, exists) in pkg_licenses.items() if not exists]
+            outbound_licenses = [pkg_license for (pkg_license, exists) in pkg_licenses.items() if not exists]
             self.warnings.append(("license-file-in-external-pkg %s", (", ".join(outbound_licenses),)))
 
             for other_pkg in [load_from_db(name) for name in pkginfo["depends"]]:
@@ -311,10 +311,10 @@ class package(TarballRule):
                     if outbound_license in other_pkg["files"]:
                         pkg_licenses[outbound_license] = True
                         # if there are no license files left to check, break early
-                        if not [license for (license, exists) in pkg_licenses.items() if not exists]:
+                        if not [pkg_license for (pkg_license, exists) in pkg_licenses.items() if not exists]:
                             break
 
-            outbound_licenses = [license for (license, exists) in pkg_licenses.items() if not exists]
+            outbound_licenses = [pkg_license for (pkg_license, exists) in pkg_licenses.items() if not exists]
             # there are symlinks to license files in other pkgs, but those files are missing
             # (or the package in question is not a dependency)
             for outbound_license in outbound_licenses:
