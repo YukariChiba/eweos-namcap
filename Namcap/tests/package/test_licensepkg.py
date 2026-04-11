@@ -17,7 +17,7 @@ from Namcap.tests.makepkg import MakepkgTest
 
 
 @mark.parametrize(
-    "input, result, expectation",
+    "spdx_identifier, result, expectation",
     [
         ("LicenseRef-FOO", "LicenseRef-FOO", does_not_raise()),
         ("() broken", "", raises(Exception)),
@@ -30,13 +30,13 @@ from Namcap.tests.makepkg import MakepkgTest
         ),
     ],
 )
-def test_get_license_canonicalized(input: str, result: str, expectation: ContextManager[Any]) -> None:
+def test_get_license_canonicalized(spdx_identifier: str, result: str, expectation: ContextManager[Any]) -> None:
     with expectation:
-        assert result == licensepkg.get_license_canonicalized(input)
+        assert result == licensepkg.get_license_canonicalized(spdx_identifier)
 
 
 @mark.parametrize(
-    "input, result",
+    "spdx_identifier, result",
     [
         ("LicenseRef-FOO+", "LicenseRef-FOO+"),
         ("MIT", "MIT"),
@@ -46,12 +46,12 @@ def test_get_license_canonicalized(input: str, result: str, expectation: Context
         ("GPL-3.0-or-later+", "GPL-3.0-or-later+"),
     ],
 )
-def test_strip_plus_from_license(input: str, result: str) -> None:
-    assert LicenseSymbol(result) == licensepkg.strip_plus_from_license(LicenseSymbol(input))
+def test_strip_plus_from_license(spdx_identifier: str, result: str) -> None:
+    assert LicenseSymbol(result) == licensepkg.strip_plus_from_license(LicenseSymbol(spdx_identifier))
 
 
 @mark.parametrize(
-    "input, result, expectation",
+    "spdx_identifier, result, expectation",
     [
         ("Foo", {LicenseSymbol("Foo")}, does_not_raise()),
         ("() broken", set(), raises(Exception)),
@@ -80,13 +80,15 @@ def test_strip_plus_from_license(input: str, result: str) -> None:
         ),
     ],
 )
-def test_get_license_symbols(input: str, result: set[LicenseSymbol], expectation: ContextManager[Any]) -> None:
+def test_get_license_symbols(
+    spdx_identifier: str, result: set[LicenseSymbol], expectation: ContextManager[Any]
+) -> None:
     with expectation:
-        assert result == licensepkg.get_license_symbols(input)
+        assert result == licensepkg.get_license_symbols(spdx_identifier)
 
 
 @mark.parametrize(
-    "input, result",
+    "spdx_identifier, result",
     [
         ({LicenseSymbol("GPL-3.0-or-later")}, set()),
         ({LicenseSymbol("MIT")}, {LicenseSymbol("MIT")}),
@@ -101,9 +103,9 @@ def test_get_license_symbols(input: str, result: set[LicenseSymbol], expectation
         ),
     ],
 )
-def test_get_uncommon_license_symbols(input: set[BaseSymbol], result: set[BaseSymbol]) -> None:
+def test_get_uncommon_license_symbols(spdx_identifier: set[BaseSymbol], result: set[BaseSymbol]) -> None:
     assert result == licensepkg.get_uncommon_license_symbols(
-        input,
+        spdx_identifier,
         licensepkg.get_known_spdx_license_identifiers(),
         licensepkg.get_known_spdx_license_exceptions(),
         licensepkg.get_common_spdx_license_identifiers(),
@@ -112,7 +114,7 @@ def test_get_uncommon_license_symbols(input: set[BaseSymbol], result: set[BaseSy
 
 
 @mark.parametrize(
-    "input, result",
+    "spdx_identifier, result",
     [
         ({LicenseSymbol("GPL-3.0-or-later")}, set()),
         ({LicenseSymbol("LicenseRef-FOO")}, {LicenseSymbol("LicenseRef-FOO")}),
@@ -127,9 +129,9 @@ def test_get_uncommon_license_symbols(input: set[BaseSymbol], result: set[BaseSy
         ),
     ],
 )
-def test_get_unknown_license_symbols(input: set[BaseSymbol], result: set[BaseSymbol]) -> None:
+def test_get_unknown_license_symbols(spdx_identifier: set[BaseSymbol], result: set[BaseSymbol]) -> None:
     assert result == licensepkg.get_unknown_license_symbols(
-        input, licensepkg.get_known_spdx_license_identifiers(), licensepkg.get_known_spdx_license_exceptions()
+        spdx_identifier, licensepkg.get_known_spdx_license_identifiers(), licensepkg.get_known_spdx_license_exceptions()
     )
 
 
