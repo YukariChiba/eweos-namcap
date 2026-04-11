@@ -182,7 +182,7 @@ class PacmanPackage(collections.abc.MutableMapping[str, Any]):
             return "PacmanPackage(%s)" % repr(self._data)
         else:
             children = ",".join(repr(p) for p in self.subpackages)
-            return "PacmanPackage({},[{}])".format(repr(self._data), children)
+            return f"PacmanPackage({repr(self._data)},[{children}])"
 
 
 def load_from_pkgbuild(path):
