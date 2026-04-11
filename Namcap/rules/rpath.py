@@ -20,8 +20,7 @@ def get_rpaths(fileobj):
         for tag in section.iter_tags("DT_RPATH"):
             rpaths = tag.rpath
             rpaths = rpaths.split(":")
-            for path in rpaths:
-                yield path
+            yield from rpaths
 
 
 class package(TarballRule):
