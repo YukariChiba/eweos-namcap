@@ -36,7 +36,11 @@ package() {
         pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.filenames.package)
         self.assertEqual(r.errors, [])
         tag, value1 = r.warnings[0]
+        # TODO: correctly type Diagnostic
+        assert isinstance(value1, str)
         tag, value2 = r.warnings[1]
+        # TODO: correctly type Diagnostic
+        assert isinstance(value2, str)
         self.assertEqual(tag, "invalid-filename")
         self.assertEqual(
             set((value1.encode(errors="surrogateescape"), value2.encode(errors="surrogateescape"))),

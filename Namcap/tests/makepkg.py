@@ -10,6 +10,7 @@ import tempfile
 import unittest
 
 import Namcap.package
+from Namcap.ruleclass import TarballRule
 
 makepkg_conf = """
 DLAGENTS=('ftp::/usr/bin/wget -c --passive-ftp -t 3 --waitretry=3 -O %%o %%u'
@@ -60,9 +61,12 @@ class MakepkgTest(unittest.TestCase):
             raise RuntimeError("makepkg returned an error")
         os.chdir(pwd)
 
-    def run_rule_on_tarball(self, filename, rule):
+    def run_rule_on_tarball(
+        self, filename: str, rule: type[TarballRule]
+    ) -> tuple[Namcap.package.PacmanPackage, TarballRule]:
         # process PKGINFO
         pkg = Namcap.package.load_from_tarball(filename + ".xz")
+        assert pkg is not None, "failed to load package from tarball"
 
         tar = tarfile.open(filename + ".xz")
         r = rule()
