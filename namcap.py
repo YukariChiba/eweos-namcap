@@ -47,9 +47,9 @@ def show_messages(name: str, key: str, messages: list[Diagnostic]) -> None:
     }
     for msg in messages:
         if sys.stdout.isatty():
-            print("%s %s: %s" % (name, colored_key[key], Namcap.tags.format_message(msg)))
+            print("{} {}: {}".format(name, colored_key[key], Namcap.tags.format_message(msg)))
         else:
-            print("%s %s: %s" % (name, key, Namcap.tags.format_message(msg)))
+            print("{} {}: {}".format(name, key, Namcap.tags.format_message(msg)))
 
 
 def process_realpackage(package, modules):
