@@ -5,7 +5,7 @@ import os
 import shutil
 import tempfile
 import unittest
-from typing import Callable, NoReturn
+from typing import Callable
 
 import Namcap.package
 import Namcap.ruleclass
@@ -27,7 +27,7 @@ class PkgbuildTest(unittest.TestCase):
             self.test_valid = PkgbuildTest.valid_tests
     """
 
-    rule: Callable[..., Namcap.ruleclass.AbstractRule] | NoReturn
+    rule: Callable[..., Namcap.ruleclass.AbstractRule]
 
     def preSetUp(self) -> None:
         pass
