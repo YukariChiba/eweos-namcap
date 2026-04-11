@@ -34,7 +34,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.lotsofdocs.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.lotsofdocs.package)
         self.assertEqual(r.errors, [])
         tag, value = r.warnings[0]
         self.assertEqual(tag, "lots-of-docs %f")

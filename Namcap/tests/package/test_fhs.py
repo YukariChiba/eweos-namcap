@@ -37,7 +37,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSRule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSRule)
         self.assertEqual(set(r.errors), {("file-in-temporary-dir %s", "run/program.pid")})
         self.assertEqual(
             set(r.warnings),
@@ -76,7 +76,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_man)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSManpagesRule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSManpagesRule)
         self.assertEqual(r.errors, [("non-fhs-man-page %s", "usr/man/something.1.gz")])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
@@ -106,7 +106,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild_info)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSInfoPagesRule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSInfoPagesRule)
         self.assertEqual(r.errors, [("non-fhs-info-page %s", "usr/info/something.gz")])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])

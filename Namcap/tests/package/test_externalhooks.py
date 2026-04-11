@@ -47,7 +47,7 @@ post_install() {
         with open(os.path.join(self.tmpdir, "sample.install"), "w") as f:
             f.write(self.install_bad)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        _pkg, r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.externalhooks.ExternalHooksRule
         )
         self.assertEqual(r.errors, [])
@@ -64,7 +64,7 @@ post_install() {
         with open(os.path.join(self.tmpdir, "sample.install"), "w") as f:
             f.write(self.install_good)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        _pkg, r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.externalhooks.ExternalHooksRule
         )
         self.assertEqual(r.errors, [])

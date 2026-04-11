@@ -32,7 +32,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.emptydir.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.emptydir.package)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("empty-directory %s", "usr/share/directory")])
         self.assertEqual(r.infos, [])

@@ -33,7 +33,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.perllocal.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.perllocal.package)
         self.assertEqual(r.errors, [("perllocal-pod-present %s", "usr/lib/perl/5.12/site-local/libmine/perllocal.pod")])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])

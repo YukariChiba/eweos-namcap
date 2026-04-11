@@ -37,7 +37,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.rpath.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.rpath.package)
         self.assertEqual(r.errors, [("insecure-rpath %s %s", ("/home/evil/lib", "usr/bin/evilprogram"))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])

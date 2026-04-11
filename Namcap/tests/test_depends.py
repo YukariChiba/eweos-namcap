@@ -31,7 +31,7 @@ class DependsTests(unittest.TestCase):
         # false negative test
         self.pkginfo["depends"] = {"readline": []}
         self.pkginfo.detected_deps = {"glibc": [], "readline": []}
-        e, w, i = Namcap.depends.analyze_depends(self.pkginfo)
+        e, w, _i = Namcap.depends.analyze_depends(self.pkginfo)
         expected_w = [("dependency-implicitly-satisfied %s (%s)", ("glibc", ""))]
         self.assertEqual(e, [])
         self.assertEqual(w, expected_w)
@@ -41,7 +41,7 @@ class DependsTests(unittest.TestCase):
         # false positive test
         self.pkginfo["depends"] = {"pyalpm": [], "python": []}
         self.pkginfo.detected_deps = {"pyalpm": [], "python": []}
-        e, w, i = Namcap.depends.analyze_depends(self.pkginfo)
+        e, w, _i = Namcap.depends.analyze_depends(self.pkginfo)
         self.assertEqual(e, [])
         self.assertEqual(w, [])
         # info is verbose and beyond scope, skip it

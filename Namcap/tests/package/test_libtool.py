@@ -33,7 +33,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.libtool.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.libtool.package)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("libtool-file-present %s", "usr/lib/libsomething.la")])
         self.assertEqual(r.infos, [])

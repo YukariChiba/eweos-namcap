@@ -32,7 +32,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild + "pkgname=systemd")
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        _pkg, r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.systemdlocation.systemdlocationRule
         )
         self.assertEqual(r.errors, [])
@@ -44,7 +44,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild + "provides=(systemd)")
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        _pkg, r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.systemdlocation.systemdlocationRule
         )
         self.assertEqual(r.errors, [])
@@ -56,7 +56,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        _pkg, r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.systemdlocation.systemdlocationRule
         )
         self.assertEqual(r.errors, [])

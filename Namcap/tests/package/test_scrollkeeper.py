@@ -33,7 +33,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.scrollkeeper.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.scrollkeeper.package)
         self.assertEqual(r.errors, [("scrollkeeper-dir-exists %s", "var/lib/scrollkeeper")])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])

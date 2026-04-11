@@ -35,13 +35,13 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(
+        pkg, _r = self.run_rule_on_tarball(
             os.path.join(self.tmpdir, pkgfile), Namcap.rules.pydepends.PythonDependencyRule
         )
         self.assertEqual(
             pkg.detected_deps["pyalpm"], [("python-modules-needed %s %s", (str(["pyalpm"]), str(["usr/bin/main.py"])))]
         )
-        e, w, i = Namcap.depends.analyze_depends(pkg)
+        e, w, _i = Namcap.depends.analyze_depends(pkg)
         self.assertEqual(
             e,
             [

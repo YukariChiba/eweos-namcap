@@ -34,7 +34,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFPaths)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFPaths)
         self.assertEqual(r.errors, [("elffile-not-in-allowed-dirs %s", ("usr/share/something/binary",))])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
@@ -67,7 +67,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFExecStackRule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFExecStackRule)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("elffile-with-execstack %s", ("usr/bin/withexecstack",))])
         self.assertEqual(r.infos, [])
@@ -100,7 +100,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.NoPIERule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.NoPIERule)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [("elffile-nopie %s", ("usr/bin/nopie",))])
         self.assertEqual(r.infos, [])
@@ -144,7 +144,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFSHSTKRule)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.elffiles.ELFSHSTKRule)
         self.assertEqual(r.errors, [])
         self.assertEqual(
             r.warnings,

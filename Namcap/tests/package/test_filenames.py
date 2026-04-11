@@ -33,7 +33,7 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w", encoding="utf-8") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.filenames.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.filenames.package)
         self.assertEqual(r.errors, [])
         tag, value1 = r.warnings[0]
         # TODO: correctly type Diagnostic

@@ -49,11 +49,11 @@ package() {
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(self.pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.sodepends.SharedLibsRule)
+        pkg, _r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.sodepends.SharedLibsRule)
         self.assertEqual(
             pkg.detected_deps["pacman"], [("libraries-needed %s %s", (str([alpm_filename]), str(["usr/bin/main"])))]
         )
-        e, w, i = Namcap.depends.analyze_depends(pkg)
+        e, w, _i = Namcap.depends.analyze_depends(pkg)
         self.assertEqual(
             e,
             [

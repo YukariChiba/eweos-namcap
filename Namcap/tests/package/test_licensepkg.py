@@ -260,7 +260,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(r.errors, [])
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])
@@ -289,7 +289,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -323,7 +323,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [],
@@ -355,7 +355,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -392,7 +392,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -430,7 +430,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -467,7 +467,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -504,7 +504,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
@@ -538,7 +538,7 @@ class LicenseFileTest(MakepkgTest):
         with open(os.path.join(self.tmpdir, "PKGBUILD"), "w") as f:
             f.write(pkgbuild)
         self.run_makepkg()
-        pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
+        _pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.licensepkg.package)
         self.assertEqual(
             r.errors,
             [
