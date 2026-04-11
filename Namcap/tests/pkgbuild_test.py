@@ -50,7 +50,7 @@ class PkgbuildTest(unittest.TestCase):
             r.analyze(pkginfo, self.tmpname)
         return r
 
-    def valid_tests(self):
+    def valid_tests(self) -> None:
         "Valid PKGBUILDS"
         for p in valid_pkgbuilds:
             r = self.run_on_pkg(p)
@@ -58,7 +58,7 @@ class PkgbuildTest(unittest.TestCase):
             self.assertEqual(r.warnings, [])
             self.assertEqual(r.errors, [])
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         shutil.rmtree(self.tmpdir)
 
 

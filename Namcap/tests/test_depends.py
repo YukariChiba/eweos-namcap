@@ -8,10 +8,10 @@ import Namcap.package
 
 
 class DependsTests(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.pkginfo = Namcap.package.PacmanPackage({"name": "package"})
 
-    def test_missing(self):
+    def test_missing(self) -> None:
         self.pkginfo.detected_deps = {"pkg1": []}
         e, w, i = Namcap.depends.analyze_depends(self.pkginfo)
         expected_e = [("dependency-detected-not-included %s (%s)", ("pkg1", ""))]
@@ -19,7 +19,7 @@ class DependsTests(unittest.TestCase):
         self.assertEqual(w, [])
         self.assertEqual(i, [("depends-by-namcap-sight depends=(%s)", ("pkg1",))])
 
-    def test_unneeded(self):
+    def test_unneeded(self) -> None:
         self.pkginfo["depends"] = {"pkg1": []}
         e, w, i = Namcap.depends.analyze_depends(self.pkginfo)
         expected_w = [("dependency-not-needed %s", ("pkg1",))]
@@ -27,7 +27,7 @@ class DependsTests(unittest.TestCase):
         self.assertEqual(w, expected_w)
         self.assertEqual(i, [("depends-by-namcap-sight depends=(%s)", ("",))])
 
-    def test_satisfied(self):
+    def test_satisfied(self) -> None:
         # false negative test
         self.pkginfo["depends"] = {"readline": []}
         self.pkginfo.detected_deps = {"glibc": [], "readline": []}
@@ -37,7 +37,7 @@ class DependsTests(unittest.TestCase):
         self.assertEqual(w, expected_w)
         # info is verbose and beyond scope, skip it
 
-    def test_satisfied2(self):
+    def test_satisfied2(self) -> None:
         # false positive test
         self.pkginfo["depends"] = {"pyalpm": [], "python": []}
         self.pkginfo.detected_deps = {"pyalpm": [], "python": []}

@@ -38,16 +38,16 @@ SRCEXT='.src.tar.gz'
 
 
 class MakepkgTest(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.tmpdir = tempfile.mkdtemp()
         self.arch = os.uname()[-1]
         with open(os.path.join(self.tmpdir, "makepkg.conf"), "w") as f:
             f.write(makepkg_conf % {"arch": self.arch})
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         shutil.rmtree(self.tmpdir)
 
-    def run_makepkg(self):
+    def run_makepkg(self) -> None:
         pwd = os.getcwd()
         os.chdir(self.tmpdir)
         environment = os.environ

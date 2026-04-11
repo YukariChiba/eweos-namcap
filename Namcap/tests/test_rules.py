@@ -6,5 +6,5 @@ import Namcap.rules
 
 
 class RulesTests(unittest.TestCase):
-    def test_all_rules_dict(self):
+    def test_all_rules_dict(self) -> None:
         self.assertNotEqual(Namcap.rules.all_rules, {})

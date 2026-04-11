@@ -41,37 +41,37 @@ package() {
 
 
 class PkgbuildLoaderTests(unittest.TestCase):
-    def setUp(self):
+    def setUp(self) -> None:
         self.tmpdir = tempfile.mkdtemp()
         tmpname = os.path.join(self.tmpdir, "PKGBUILD")
         with open(tmpname, "w") as f:
             f.write(pkgbuild)
         self.pkginfo = Namcap.package.load_from_pkgbuild(tmpname)
 
-    def tearDown(self):
+    def tearDown(self) -> None:
         shutil.rmtree(self.tmpdir)
 
-    def test_pkgname(self):
+    def test_pkgname(self) -> None:
         self.assertEqual(self.pkginfo["name"], "mypackage")
         self.assertEqual(self.pkginfo["pkgname"], "mypackage")
 
-    def test_version(self):
+    def test_version(self) -> None:
         self.assertEqual(self.pkginfo["version"], "1.0-1")
 
-    def test_pkgdesc(self):
+    def test_pkgdesc(self) -> None:
         self.assertEqual(self.pkginfo["desc"], "A package")
 
-    def test_url(self):
+    def test_url(self) -> None:
         self.assertEqual(self.pkginfo["url"], "http://www.example.com/")
 
-    def test_depends(self):
+    def test_depends(self) -> None:
         self.assertEqual(self.pkginfo["depends"], ["glibc", "foobar"])
         self.assertEqual(self.pkginfo["orig_depends"], ["glibc", "foobar"])
 
-    def test_optdeps(self):
+    def test_optdeps(self) -> None:
         self.assertEqual(self.pkginfo["optdepends"], ["libabc"])
         self.assertEqual(self.pkginfo["orig_optdepends"], ["libabc: provides the abc feature"])
 
-    def test_provides(self):
+    def test_provides(self) -> None:
         self.assertEqual(self.pkginfo["provides"], ["yourpackage"])
         self.assertEqual(self.pkginfo["orig_provides"], ["yourpackage=0.9"])

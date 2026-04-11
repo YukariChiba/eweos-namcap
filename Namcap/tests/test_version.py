@@ -9,7 +9,7 @@ import Namcap.version
 
 
 class VersionTests(unittest.TestCase):
-    def test_manpage(self):
+    def test_manpage(self) -> None:
         """Test that the manpage and program has the same version."""
         here = os.path.dirname(os.path.realpath(__file__))
         with open(os.path.join(here, "..", "..", "namcap.1")) as f:
