@@ -10,6 +10,8 @@ from typing import Callable, NoReturn
 import Namcap.package
 import Namcap.ruleclass
 
+type RunResult = Namcap.ruleclass.PkgbuildRule | Namcap.ruleclass.PkgInfoRule | Namcap.ruleclass.AbstractRule
+
 
 class PkgbuildTest(unittest.TestCase):
     """
@@ -35,15 +37,16 @@ class PkgbuildTest(unittest.TestCase):
         self.tmpdir = tempfile.mkdtemp()
         self.tmpname = os.path.join(self.tmpdir, "PKGBUILD")
 
-    def run_on_pkg(self, p):
+    def run_on_pkg(self, p: str) -> RunResult:
         with open(self.tmpname, "w", encoding="utf-8") as f:
             f.write(p)
         pkginfo = Namcap.package.load_from_pkgbuild(self.tmpname)
+        assert pkginfo is not None, "PKGBUILD could not be parsed"
         r = self.rule()
         if isinstance(r, Namcap.ruleclass.PkgInfoRule):
             if pkginfo.is_split:
                 for p in pkginfo.subpackages:
-                    r.analyze(p, self.tmpname)
+                    r.analyze(p, self.tmpname)  # type: ignore
             else:
                 r.analyze(pkginfo, self.tmpname)
         if isinstance(r, Namcap.ruleclass.PkgbuildRule):
