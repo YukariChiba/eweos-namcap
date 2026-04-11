@@ -127,7 +127,7 @@ def get_uncommon_license_symbols(
             if exception in uncommon_exceptions or str(exception).startswith("LicenseRef-"):
                 uncommon_symbols.append(exception)
         else:
-            if symbol in uncommon_licenses or str(list(symbol.decompose())[0]).startswith("LicenseRef-"):
+            if symbol in uncommon_licenses or str(next(iter(symbol.decompose()))).startswith("LicenseRef-"):
                 uncommon_symbols.append(symbol)
 
     return set(uncommon_symbols)
@@ -331,7 +331,7 @@ class package(TarballRule):
 
             # try to figure out which other package contains the actual files
             other_pkg = (
-                list(Path(license_dir_symlink.removeprefix("usr/share/licenses/")).parts)[0]
+                next(iter(Path(license_dir_symlink.removeprefix("usr/share/licenses/")).parts))
                 if license_dir_symlink.startswith("usr/share/licenses/")
                 else None
             )
