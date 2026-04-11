@@ -9,6 +9,7 @@ select = [
     "F",       # pyflakes
     "ISC",     # flake8-implicit-str-concat
     "PIE",     # flake8-pie
+    "RSE",     # flake8-raise
     "RUF",     # ruff rules
     "TCH",     # flake8-type-checking
     "UP032",   # f-string
