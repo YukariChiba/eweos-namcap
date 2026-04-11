@@ -3,13 +3,9 @@
 
 """Checks dependencies semi-smartly."""
 
-from typing import TYPE_CHECKING
-
 import Namcap.tags
 from Namcap import package
-
-if TYPE_CHECKING:
-    from .types import Diagnostic
+from .types import Diagnostic
 
 
 def single_covered(depend):
@@ -52,7 +48,7 @@ def getprovides(depends):
     return provides
 
 
-def analyze_depends(pkginfo):
+def analyze_depends(pkginfo: package.PacmanPackage) -> tuple[list[Diagnostic], list[Diagnostic], list[Diagnostic]]:
     errors: list[Diagnostic] = []
     warnings: list[Diagnostic] = []
     infos: list[Diagnostic] = []
