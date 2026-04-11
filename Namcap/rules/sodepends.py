@@ -96,7 +96,7 @@ def finddepends(libdepends):
     knownlibs = set(libdepends)
     foundlibs = set()
 
-    actualpath = dict((j, os.path.realpath("/" + libdepends[j])[1:]) for j in knownlibs)
+    actualpath = {j: os.path.realpath("/" + libdepends[j])[1:] for j in knownlibs}
 
     # Sometimes packages don't include all so .so, .so.1, .so.1.13, .so.1.13.19 files
     # They rely on ldconfig to create all the symlinks

@@ -13,20 +13,20 @@ class package(TarballRule):
     description = "Checks that symlinks point to the right place"
 
     def analyze(self, pkginfo, tar):
-        filenames = set(s.name.rstrip("/") for s in tar)
+        filenames = {s.name.rstrip("/") for s in tar}
         depfilenames = set()
         for d in pkginfo["depends"]:
             p = load_from_db(d)
             if not p:
                 continue
-            depfilenames |= set(name.rstrip("/") for name, _, _ in p["files"])
+            depfilenames |= {name.rstrip("/") for name, _, _ in p["files"]}
         # debug package needs the corresponding binary packages
         if is_debug(pkginfo):
             for d in [pkginfo["name"]] + pkginfo["provides"]:
                 p = load_from_db(d[: -len("-debug")])
                 if not p:
                     continue
-                depfilenames |= set(name.rstrip("/") for name, _, _ in p["files"])
+                depfilenames |= {name.rstrip("/") for name, _, _ in p["files"]}
         filenames |= depfilenames
         for i in tar:
             if i.issym():

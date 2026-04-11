@@ -182,7 +182,7 @@ class PacmanPackage(collections.abc.MutableMapping[str, Any]):
             return "PacmanPackage(%s)" % repr(self._data)
         else:
             children = ",".join(repr(p) for p in self.subpackages)
-            return "PacmanPackage(%s,[%s])" % (repr(self._data), children)
+            return "PacmanPackage({},[{}])".format(repr(self._data), children)
 
 
 def load_from_pkgbuild(path):
@@ -232,7 +232,7 @@ def load_from_alpm(pmpkg: pyalpm.Package) -> PacmanPackage:
         "provides",
         "replaces",
     ]
-    values = dict((v, getattr(pmpkg, v)) for v in variables)
+    values = {v: getattr(pmpkg, v) for v in variables}
 
     # arch is a list for PKGBUILDs, we do the same for tarball packages
     values["arch"] = [pmpkg.arch]

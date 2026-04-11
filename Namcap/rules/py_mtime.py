@@ -27,12 +27,12 @@ def _quick_filter(names):
 
 def _tar_timestamps(tar):
     "takes a tar object"
-    return dict((m.name, m.mtime) for m in tar.getmembers())
+    return {m.name: m.mtime for m in tar.getmembers()}
 
 
 def _mtree_timestamps(tar):
     "takes a tar object"
-    return dict((h, a["time"]) for h, a in load_mtree(tar) if "time" in a)
+    return {h: a["time"] for h, a in load_mtree(tar) if "time" in a}
 
 
 def _generic_timestamps(tar):

@@ -11,7 +11,7 @@ from .types import Diagnostic
 def single_covered(depend: str) -> set[str]:
     "Returns full coverage tree of one package, with loops broken"
     covered = set()
-    todo = set([depend])
+    todo = {depend}
     while todo:
         i = todo.pop()
         covered.add(i)
@@ -20,7 +20,7 @@ def single_covered(depend: str) -> set[str]:
             continue
         todo |= set(pac["depends"]) - covered
 
-    return covered - set([depend])
+    return covered - {depend}
 
 
 def getcovered(dependlist: set[str]) -> set[str]:
