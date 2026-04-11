@@ -3,6 +3,8 @@
 
 import os
 
+from Namcap.types import FormatArgs
+
 tags: dict[str, str] = {}
 
 DEFAULT_TAGS = "/usr/share/namcap/namcap-tags"
@@ -30,7 +32,7 @@ def load_tags(filename: str | None = None, machine: bool = False) -> None:
             tags[machinetag] = humantag
 
 
-def format_message(msg: tuple[str, str]) -> str:
+def format_message(msg: tuple[str, FormatArgs]) -> str:
     """
     Formats a tuple (tag, data)
     """
