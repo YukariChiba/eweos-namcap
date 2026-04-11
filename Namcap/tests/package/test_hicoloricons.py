@@ -38,14 +38,12 @@ package() {
         self.assertEqual(pkg.detected_deps, {"hicolor-icon-theme": [("hicolor-icon-theme-needed-for-hicolor-dir", ())]})
         self.assertEqual(
             set(r.errors + e),
-            set(
-                [
-                    (
-                        "dependency-detected-not-included %s (%s)",
-                        ("hicolor-icon-theme", "needed for hicolor theme hierarchy"),
-                    ),
-                ]
-            ),
+            {
+                (
+                    "dependency-detected-not-included %s (%s)",
+                    ("hicolor-icon-theme", "needed for hicolor theme hierarchy"),
+                ),
+            },
         )
         self.assertEqual(r.warnings + w, [])
         self.assertEqual(r.infos + i, [("depends-by-namcap-sight depends=(%s)", ("hicolor-icon-theme",))])

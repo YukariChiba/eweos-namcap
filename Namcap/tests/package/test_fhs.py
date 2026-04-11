@@ -38,18 +38,16 @@ package() {
             f.write(self.pkgbuild)
         self.run_makepkg()
         pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), fhs.FHSRule)
-        self.assertEqual(set(r.errors), set([("file-in-temporary-dir %s", "run/program.pid")]))
+        self.assertEqual(set(r.errors), {("file-in-temporary-dir %s", "run/program.pid")})
         self.assertEqual(
             set(r.warnings),
-            set(
-                [
-                    ("file-in-non-standard-dir %s", "srv/"),
-                    ("file-in-non-standard-dir %s", "srv/index.html"),
-                    ("file-in-non-standard-dir %s", "weird/"),
-                    ("file-in-non-standard-dir %s", "weird/directory/"),
-                    ("file-in-non-standard-dir %s", "weird/directory/file"),
-                ]
-            ),
+            {
+                ("file-in-non-standard-dir %s", "srv/"),
+                ("file-in-non-standard-dir %s", "srv/index.html"),
+                ("file-in-non-standard-dir %s", "weird/"),
+                ("file-in-non-standard-dir %s", "weird/directory/"),
+                ("file-in-non-standard-dir %s", "weird/directory/file"),
+            },
         )
         self.assertEqual(r.infos, [])
 

@@ -49,14 +49,12 @@ package() {
         self.assertEqual(r.errors, [])
         self.assertEqual(
             set(r.warnings),
-            set(
-                [
-                    ("file-world-writable %s", "usr/bin/program"),
-                    ("file-not-world-readable %s", "usr/bin/secret"),
-                    ("file-setugid %s", "usr/bin/unsafe"),
-                    ("directory-not-world-executable %s", "usr/share/broken"),
-                    ("incorrect-library-permissions %s", "usr/lib/libstatic.a"),
-                ]
-            ),
+            {
+                ("file-world-writable %s", "usr/bin/program"),
+                ("file-not-world-readable %s", "usr/bin/secret"),
+                ("file-setugid %s", "usr/bin/unsafe"),
+                ("directory-not-world-executable %s", "usr/share/broken"),
+                ("incorrect-library-permissions %s", "usr/lib/libstatic.a"),
+            },
         )
         self.assertEqual(r.infos, [])

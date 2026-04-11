@@ -43,23 +43,19 @@ package() {
         pkg, r = self.run_rule_on_tarball(os.path.join(self.tmpdir, pkgfile), Namcap.rules.symlink.package)
         self.assertEqual(
             set(r.errors),
-            set(
-                [
-                    ("dangling-symlink %s points to %s", ("usr/share/somelink", "nofile")),
-                    ("dangling-symlink %s points to %s", ("usr/share/somelink2", "../nofile")),
-                ]
-            ),
+            {
+                ("dangling-symlink %s points to %s", ("usr/share/somelink", "nofile")),
+                ("dangling-symlink %s points to %s", ("usr/share/somelink2", "../nofile")),
+            },
         )
         self.assertEqual(r.warnings, [])
         self.assertEqual(
             set(r.infos),
-            set(
-                [
-                    ("symlink-found %s points to %s", ("usr/share/somelink", "nofile")),
-                    ("symlink-found %s points to %s", ("usr/share/somelink2", "../nofile")),
-                    ("symlink-found %s points to %s", ("usr/share/validlink", "//usr/share/somedata")),
-                    ("symlink-found %s points to %s", ("usr/share/validlink2", "../share/somedata")),
-                    ("symlink-found %s points to %s", ("usr/share/deplink", "/usr/include/math.h")),
-                ]
-            ),
+            {
+                ("symlink-found %s points to %s", ("usr/share/somelink", "nofile")),
+                ("symlink-found %s points to %s", ("usr/share/somelink2", "../nofile")),
+                ("symlink-found %s points to %s", ("usr/share/validlink", "//usr/share/somedata")),
+                ("symlink-found %s points to %s", ("usr/share/validlink2", "../share/somedata")),
+                ("symlink-found %s points to %s", ("usr/share/deplink", "/usr/include/math.h")),
+            },
         )

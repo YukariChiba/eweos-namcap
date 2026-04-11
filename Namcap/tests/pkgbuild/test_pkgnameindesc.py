@@ -42,5 +42,5 @@ package() {
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
-        self.assertEqual(set(r.warnings), set([("pkgname-in-description", ())]))
+        self.assertEqual(set(r.warnings), {("pkgname-in-description", ())})
         self.assertEqual(r.infos, [])

@@ -43,7 +43,7 @@ package() {
         assert isinstance(value2, str)
         self.assertEqual(tag, "invalid-filename")
         self.assertEqual(
-            set((value1.encode(errors="surrogateescape"), value2.encode(errors="surrogateescape"))),
-            set((b"usr/bin/Arch\xc2\xb7Linux", b"usr/bin/Arch\xb7Linux")),
+            {value1.encode(errors="surrogateescape"), value2.encode(errors="surrogateescape")},
+            {b"usr/bin/Arch\xc2\xb7Linux", b"usr/bin/Arch\xb7Linux"},
         )
         self.assertEqual(r.infos, [])

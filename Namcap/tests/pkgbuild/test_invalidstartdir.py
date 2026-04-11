@@ -44,8 +44,6 @@ package() {
     def test_example1(self) -> None:
         # Example 1
         r = self.run_on_pkg(self.pkgbuild1)
-        self.assertEqual(
-            set(r.errors), set([("file-referred-in-startdir", ()), ("use-pkgdir", ()), ("use-srcdir", ())])
-        )
+        self.assertEqual(set(r.errors), {("file-referred-in-startdir", ()), ("use-pkgdir", ()), ("use-srcdir", ())})
         self.assertEqual(r.warnings, [])
         self.assertEqual(r.infos, [])

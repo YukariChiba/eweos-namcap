@@ -97,11 +97,9 @@ package() {
         self.assertEqual(r.errors, [])
         self.assertEqual(
             set(r.warnings),
-            set(
-                [
-                    ("extra-var-begins-without-underscore %s", "mycustomvar"),
-                ]
-            ),
+            {
+                ("extra-var-begins-without-underscore %s", "mycustomvar"),
+            },
         )
         self.assertEqual(r.infos, [])
 
