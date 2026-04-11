@@ -8,7 +8,7 @@ from Namcap import package
 from .types import Diagnostic
 
 
-def single_covered(depend):
+def single_covered(depend: str) -> set[str]:
     "Returns full coverage tree of one package, with loops broken"
     covered = set()
     todo = set([depend])
@@ -23,7 +23,7 @@ def single_covered(depend):
     return covered - set([depend])
 
 
-def getcovered(dependlist):
+def getcovered(dependlist: set[str]) -> set[str]:
     """
     Returns full coverage tree set, without packages
     from self-loops (iterable of package names)
@@ -35,7 +35,7 @@ def getcovered(dependlist):
     return covered
 
 
-def getprovides(depends):
+def getprovides(depends: set[str]) -> dict[str, set[str]]:
     provides: dict[str, set[str]] = {}
     for i in depends:
         provides[i] = set()
