@@ -177,7 +177,7 @@ class PacmanPackage(collections.abc.MutableMapping[str, Any]):
         self.process_strings()
         self.clean_depends()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         if not self.is_split:
             return "PacmanPackage(%s)" % repr(self._data)
         else:

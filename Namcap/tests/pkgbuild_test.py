@@ -29,10 +29,10 @@ class PkgbuildTest(unittest.TestCase):
 
     rule: Callable[..., Namcap.ruleclass.AbstractRule] | NoReturn
 
-    def preSetUp(self):
+    def preSetUp(self) -> None:
         pass
 
-    def setUp(self):
+    def setUp(self) -> None:
         self.preSetUp()
         self.tmpdir = tempfile.mkdtemp()
         self.tmpname = os.path.join(self.tmpdir, "PKGBUILD")

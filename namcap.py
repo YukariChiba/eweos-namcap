@@ -11,6 +11,7 @@ import Namcap.depends
 from Namcap.package import load_from_tarball, PacmanPackage
 import Namcap.rules
 import Namcap.tags
+from Namcap.types import Diagnostic
 import Namcap.version
 
 
@@ -25,7 +26,7 @@ def get_enabled_modules():
     return dict(filter(lambda x: x[1].enable, get_modules().items()))
 
 
-def open_package(filename):
+def open_package(filename: str) -> tarfile.TarFile | None:
     try:
         tar = tarfile.open(filename, "r")
         if ".PKGINFO" not in tar.getnames():
@@ -38,7 +39,7 @@ def open_package(filename):
     return tar
 
 
-def show_messages(name, key, messages):
+def show_messages(name: str, key: str, messages: list[Diagnostic]) -> None:
     colored_key = {
         "E": "\033[91mE\033[00m",
         "W": "\033[93mW\033[00m",
