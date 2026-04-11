@@ -294,7 +294,7 @@ class package(TarballRule):
                 (
                     "license-file-missing %s %s %s",
                     (
-                        str(", ".join([str(id) for id in list(uncommon_license_symbols)])),
+                        str(", ".join([str(symbol) for symbol in list(uncommon_license_symbols)])),
                         pkginfo["name"],
                         f"{licenses_in_pkg}/{len(uncommon_license_symbols)}",
                     ),
@@ -342,7 +342,7 @@ class package(TarballRule):
                             "license-dir-target-pkg-not-in-depends %s %s %s",
                             (
                                 other_pkg,
-                                str(", ".join([str(id) for id in list(uncommon_license_symbols)])),
+                                str(", ".join([str(symbol) for symbol in list(uncommon_license_symbols)])),
                                 f"0/{len(uncommon_license_symbols)}",
                             ),
                         )
@@ -365,7 +365,7 @@ class package(TarballRule):
                     (
                         "license-dir-is-symlink-and-license-files-missing %s %s %s",
                         (
-                            str(", ".join([str(id) for id in list(uncommon_license_symbols)])),
+                            str(", ".join([str(symbol) for symbol in list(uncommon_license_symbols)])),
                             license_dir_symlink,
                             f"{licenses_outside_pkg}/{len(uncommon_license_symbols)}",
                         ),
