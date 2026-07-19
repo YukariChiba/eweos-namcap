@@ -38,6 +38,11 @@ def scanlibs(fileobj, filename, custom_libs, liblist, libdepends, libprovides):
         return {}
 
     elffile = ELFFile(fileobj)
+
+    # Skip non-native ELF files, such as Guile compiled bytecode.
+    if elffile["e_machine"] == "EM_NONE":
+        return {}
+
     bitsize = elffile.elfclass
     match elffile.header.e_machine:
         case "EM_386":
