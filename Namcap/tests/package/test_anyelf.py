@@ -12,10 +12,10 @@ pkgname=__namcap_test_anyelf
 pkgver=1.0
 pkgrel=1
 pkgdesc="A package"
-arch=('i686' 'x86_64')
+arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
-depends=('glibc')
+depends=('musl')
 options=(emptydirs)
 source=()
 build() {
@@ -34,7 +34,7 @@ pkgdesc="A package"
 arch=('any')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
-depends=('glibc')
+depends=('musl')
 options=(emptydirs)
 source=()
 build() {
@@ -53,12 +53,12 @@ pkgdesc="A package"
 arch=('any')
 url="http://www.example.com/"
 license=('GPL-3.0-or-later')
-depends=('glibc')
+depends=('musl')
 options=(emptydirs)
 source=()
 build() {
   echo "void function() { return; }" > main.c
-  gcc -c main.c
+  cc -c main.c
   ar cru library.a main.o
 }
 package() {

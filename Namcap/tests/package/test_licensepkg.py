@@ -212,10 +212,10 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
         url="http://www.example.com/"
         license=('GPL-3.0-or-later')
-        depends=('glibc')
+        depends=('musl')
         source=()
         options=(!purge !zipman)
         build() {
@@ -241,10 +241,10 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
             url="http://www.example.com/"
             license=('DWTFYWL')
-            depends=('glibc')
+            depends=('musl')
             source=()
             options=(!purge !zipman)
             build() {
@@ -275,10 +275,10 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
             url="http://www.example.com/"
             license=('LicenseRef-DWTFYWL')
-            depends=('glibc')
+            depends=('musl')
             source=()
             options=(!purge !zipman)
             build() {
@@ -307,10 +307,10 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
             url="http://www.example.com/"
             license=('LicenseRef-DWTFYWL')
-            depends=('glibc')
+            depends=('musl')
             source=()
             options=(!purge !zipman)
             build() {
@@ -344,10 +344,10 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
             url="http://www.example.com/"
             license=('GPL-3.0-or-later with Bootloader-exception')
-            depends=('glibc')
+            depends=('musl')
             source=()
             options=(!purge !zipman)
             build() {
@@ -382,10 +382,10 @@ class LicenseFileTest(MakepkgTest):
             pkgver=1.0
             pkgrel=1
             pkgdesc="A package"
-            arch=('i686' 'x86_64')
+            arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
             url="http://www.example.com/"
             license=('() broken')
-            depends=('glibc')
+            depends=('musl')
             source=()
             options=(!purge !zipman)
             build() {
@@ -419,10 +419,10 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
         url="http://www.example.com/"
         license=('MIT')
-        depends=('glibc')
+        depends=('musl')
         source=()
         options=(!purge !zipman)
         build() {
@@ -456,10 +456,10 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
         url="http://www.example.com/"
         license=('MIT')
-        depends=('glibc')
+        depends=('musl')
         source=()
         options=(!purge !zipman)
         build() {
@@ -490,7 +490,7 @@ class LicenseFileTest(MakepkgTest):
         pkgver=1.0
         pkgrel=1
         pkgdesc="A package"
-        arch=('i686' 'x86_64')
+        arch=('i686' 'x86_64' 'aarch64' 'riscv64' 'loongarch64')
         url="http://www.example.com/"
         license=('MIT')
         depends=('licenses')
