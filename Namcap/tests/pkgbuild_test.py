@@ -5,7 +5,7 @@ import os
 import shutil
 import tempfile
 import unittest
-from typing import Callable
+from collections.abc import Callable
 
 import Namcap.package
 import Namcap.ruleclass

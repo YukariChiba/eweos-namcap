@@ -4,7 +4,8 @@
 import collections
 import gzip
 from tarfile import TarFile
-from typing import Any, TYPE_CHECKING, Generator
+from typing import Any, TYPE_CHECKING
+from collections.abc import Generator
 import os
 import re
 import subprocess
