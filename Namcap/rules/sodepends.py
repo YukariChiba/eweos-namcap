@@ -266,7 +266,7 @@ class SharedLibsRule(TarballRule):
         self.infos.append(("libprovides-by-namcap-sight provides=(%s)", (" ".join(libprovides),)))
 
         # Check for packages in testing
-        for i in dependlist.keys():
+        for i in dependlist:
             p = Namcap.package.load_testing_package(i)
             q = Namcap.package.load_from_db(i)
             if p is not None and q is not None and p["version"] == q["version"]:
