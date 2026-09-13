@@ -52,7 +52,7 @@ class MakepkgTest(unittest.TestCase):
         pwd = os.getcwd()
         os.chdir(self.tmpdir)
         environment = os.environ
-        environment.update({"MAKEPKG_CONF": os.path.join(self.tmpdir, "makepkg.conf")})
+        environment.update({"MAKEPKG_CONF": os.path.join(self.tmpdir, "makepkg.conf"), "MAKEPKG_LINT_PKGBUILD": "0"})
         p = subprocess.Popen(["makepkg", "-f", "-d"], env=environment, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out1, out2 = p.communicate()
         if p.returncode != 0:
