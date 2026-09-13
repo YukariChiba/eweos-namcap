@@ -18,7 +18,7 @@ def get_runpaths(fileobj):
         if not isinstance(section, DynamicSection):
             continue
         for tag in section.iter_tags("DT_RUNPATH"):
-            yield from tag.runpath.split(":")
+            yield from tag.runpath.split(":")  # type: ignore[attr-defined]
 
 
 class package(TarballRule):

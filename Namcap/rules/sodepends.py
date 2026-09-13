@@ -56,13 +56,13 @@ def scanlibs(fileobj, filename, custom_libs, liblist, libdepends, libprovides):
         for tag in section.iter_tags():
             # DT_SONAME means it provides a library
             if tag.entry.d_tag == "DT_SONAME" and os.path.dirname(filename) in ["usr/lib", "usr/lib32"]:
-                soname = re.sub(r"\.so.*", ".so", tag.soname)
-                soversion = re.sub(r"^.*\.so\.", "", tag.soname)
+                soname = re.sub(r"\.so.*", ".so", tag.soname)  # type: ignore[attr-defined]
+                soversion = re.sub(r"^.*\.so\.", "", tag.soname)  # type: ignore[attr-defined]
                 libprovides[soname + "=" + soversion + "-" + str(bitsize)].add(filename)
             # DT_NEEDED means shared library
             if tag.entry.d_tag != "DT_NEEDED":
                 continue
-            libname = tag.needed
+            libname = tag.needed  # type: ignore[attr-defined]
             soname = re.sub(r"\.so.*", ".so", libname)
             soversion = re.sub(r"^.*\.so\.", "", libname)
             if libname in custom_libs:

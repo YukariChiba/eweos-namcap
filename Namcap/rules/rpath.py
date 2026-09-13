@@ -18,7 +18,7 @@ def get_rpaths(fileobj):
         if not isinstance(section, DynamicSection):
             continue
         for tag in section.iter_tags("DT_RPATH"):
-            rpaths = tag.rpath
+            rpaths = tag.rpath  # type: ignore[attr-defined]
             rpaths = rpaths.split(":")
             yield from rpaths
 

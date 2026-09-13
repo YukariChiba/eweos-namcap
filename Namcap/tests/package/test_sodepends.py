@@ -17,7 +17,7 @@ def get_soname(filename):
             if not isinstance(section, DynamicSection):
                 continue
             for tag in section.iter_tags("DT_SONAME"):
-                return tag.soname
+                return tag.soname  # type: ignore[attr-defined]
 
 
 class SoDependsTest(MakepkgTest):
