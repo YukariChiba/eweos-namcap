@@ -6,7 +6,8 @@ import tarfile
 from contextlib import nullcontext as does_not_raise
 from pathlib import Path
 from tarfile import TarInfo
-from typing import Any, ContextManager
+from typing import Any
+from contextlib import AbstractContextManager
 
 from license_expression import BaseSymbol, LicenseSymbol, LicenseWithExceptionSymbol
 from pytest import mark, raises
@@ -30,7 +31,7 @@ from Namcap.tests.makepkg import MakepkgTest
         ),
     ],
 )
-def test_get_license_canonicalized(spdx_identifier: str, result: str, expectation: ContextManager[Any]) -> None:
+def test_get_license_canonicalized(spdx_identifier: str, result: str, expectation: AbstractContextManager[Any]) -> None:
     with expectation:
         assert result == licensepkg.get_license_canonicalized(spdx_identifier)
 
@@ -81,7 +82,7 @@ def test_strip_plus_from_license(spdx_identifier: str, result: str) -> None:
     ],
 )
 def test_get_license_symbols(
-    spdx_identifier: str, result: set[LicenseSymbol], expectation: ContextManager[Any]
+    spdx_identifier: str, result: set[LicenseSymbol], expectation: AbstractContextManager[Any]
 ) -> None:
     with expectation:
         assert result == licensepkg.get_license_symbols(spdx_identifier)
@@ -227,7 +228,7 @@ def test_package_license_files(
         ("foo", "../bar", None, raises(ValueError)),
     ],
 )
-def test_get_symlink_target(name: str, linkname: str, result: str, expectation: ContextManager[Any]) -> None:
+def test_get_symlink_target(name: str, linkname: str, result: str, expectation: AbstractContextManager[Any]) -> None:
     tarinfo = TarInfo(name)
     tarinfo.linkname = linkname
 
