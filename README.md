@@ -70,11 +70,13 @@ A very simple rule is the “url” rule (`Namcap/rules/pkginfo.py`):
 ``` python
 from Namcap.ruleclass import PkgInfoRule
 
+
 class UrlRule(PkgInfoRule):
     name = "url"
     description = "Verifies the package comes with an URL"
+
     def analyze(self, pkginfo, tar):
-        if 'url' not in pkginfo:
+        if "url" not in pkginfo:
             self.errors.append(("missing-url", ()))
 ```
 
@@ -147,16 +149,17 @@ Here is an example testing the rule `pkgnameindesc`:
 from Namcap.tests.pkgbuild_test import PkgbuildTest
 import Namcap.rules.pkgnameindesc
 
+
 class NamcapPkgnameInDescTest(PkgbuildTest):
     pkgbuild1 = "...some bogus pkgbuild..."
+
     def preSetUp(self):
         self.rule = Namcap.rules.pkgnameindesc.package
 
     def test_example1(self):
         r = self.run_on_pkg(self.pkgbuild1)
         self.assertEqual(r.errors, [])
-        self.assertEqual(set(r.warnings), set(
-            [("pkgname-in-description", ())] ))
+        self.assertEqual(set(r.warnings), set([("pkgname-in-description", ())]))
         self.assertEqual(r.infos, [])
 ```
 
