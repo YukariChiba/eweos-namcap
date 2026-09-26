@@ -12,7 +12,7 @@ class package(TarballRule):
         if "name" in pkginfo and pkginfo["name"].endswith(("-doc", "-docs")):
             # Don't do anything if the package is called "*-doc"
             return
-        docdir = "usr/share/doc"
+        docdir = "usr/share/doc/"
         size = 0
         docsize = 0
 
